@@ -1,5 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import Product from './model/product';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +19,14 @@ export class ProductsService {
     console.log(thatProduct);
     this.http.post(`${this.uri}`, thatProduct).subscribe(res => console.log("Done"));
 
+  }
+  /**
+   *
+   * @returns un obesrvable de TABLEAU de product
+   */
+  getProducts(): Observable<Product[]> {
+    return this
+      .http
+      .get<Product[]>(`${this.uri}`);
   }
 }
