@@ -1,0 +1,16 @@
+{
+  "products": [
+    {
+      "id": 0,
+      "ProductName": "Produit de test",
+      "ProductDescription": "un produit pour tester le fonctionnement du service",
+      "ProductPrice": 0
+    },
+    {
+      "ProductName": "Un deuxième produit de test",
+      "ProductDescription": "un second produit pour tester le fonctionnement de l'ajout dans la base de données",
+      "ProductPrice": 200,
+      "id": 1
+    }
+  ]
+}
