@@ -1,5 +1,8 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { Router } from "@angular/router";
+import * as Notiflix from 'notiflix';
 
 import { Observable, Subscription } from 'rxjs';
 import Product from './model/product';
@@ -10,7 +13,11 @@ import Product from './model/product';
 export class ProductsService {
 
   uri = 'http://localhost:3000/products';
-  constructor(private http: HttpClient) { }
+
+
+
+
+  constructor(private http: HttpClient, private router: Router) { }
   /**Create a product in Database
    *
    * @param ProductName
@@ -18,14 +25,24 @@ export class ProductsService {
    * @param ProductPrice un prix, notez que le controle d'intégrité est fait par le service
    *                     et non en amont.ça c'est pour éviter de les chercher partout
    */
-  addProduct(ProductName: string, ProductDescription: string, ProductPrice: string): Subscription {
+  addProduct(ProductName: string, ProductDescription: string, ProductPrice: string, formulaire: FormGroup): Subscription {
     const thatProduct = {
       ProductName: ProductName,
       ProductDescription: ProductDescription,
       ProductPrice: parseFloat(ProductPrice) || 0
     };
-    console.log(thatProduct);
-    return this.http.post(`${this.uri}`, thatProduct).subscribe(res => console.log("Done"));
+    return this.http.post(`${this.uri}`, thatProduct).subscribe(
+      {
+        next: (res) => {
+          Notiflix.Notify.success('Produit Ajouté');
+          formulaire.reset();
+        },
+        error: (error) => {
+          Notiflix.Notify.failure(`Le produit n'a pas été ajouté`);
+          console.log(error);
+        }
+      }
+    );
 
   }
   /**
@@ -61,7 +78,20 @@ export class ProductsService {
       ProductDescription: productDescription,
       ProductPrice: parseFloat(productPrice) || 0
     };
-    return this.http.put<Product>(`${this.uri}/${id}`, product);
+    return this.http.put<Product>(`${this.uri}/${id}`, product).subscribe(
+      {
+        next: (data) => {
+          Notiflix.Notify.success("Le produit a bien été modifié")
+          this.router.navigate(['products'])
+        },
+        error: (err) => {
+          Notiflix.Notify.failure("Une erreur s'est porduit");
+          console.log(err);
+
+        },
+        complete: () => { }
+      }
+    );;
   }
 
   deleteProduct(id: number): Observable<Product> {

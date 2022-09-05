@@ -1,5 +1,6 @@
-import { Component, createPlatform, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { ProductsService } from '../products.service';
 
 @Component({
@@ -32,10 +33,9 @@ export class ProductAddComponent implements OnInit {
    * @param ProductPrice
    */
   addProduct(ProductName: string, ProductDescription: string, ProductPrice: string) {
-    this.srvProducts.addProduct(ProductName, ProductDescription, ProductPrice);
-    // et on remet les valeur des champs à 0 en cas de réussite
-    // un subscribe aurait été plus sympa
-    this.angForm.reset();
+    this.srvProducts.addProduct(ProductName, ProductDescription, ProductPrice, this.angForm);
+
+
 
 
   }
