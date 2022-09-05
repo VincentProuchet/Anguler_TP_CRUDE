@@ -1,16 +1,52 @@
 {
   "products": [
     {
-      "id": 0,
-      "ProductName": "Produit de test",
-      "ProductDescription": "un produit pour tester le fonctionnement du service",
+      "id": 3,
+      "ProductName": "un produit de test",
+      "ProductDescription": "ergqergqergqergqgqregqgr\n    fzoifjoefhkdsjfghmpqegf\nsqdgfsegfergerge\ngergergegrdfgherhregaqerg\n",
+      "ProductPrice": 400
+    },
+    {
+      "ProductName": "jfghkjulmmlhm:;,u",
+      "ProductDescription": "dfghdfghjghjf,fg,fgh,fgjgn,gjfj",
+      "ProductPrice": 452,
+      "id": 5
+    },
+    {
+      "id": 6,
+      "ProductName": "ytdh,jgk,gyhk",
+      "ProductDescription": "uiluhilhioulmh;hk;hkllkhui",
       "ProductPrice": 0
     },
     {
-      "ProductName": "Un deuxième produit de test",
-      "ProductDescription": "un second produit pour tester le fonctionnement de l'ajout dans la base de données",
-      "ProductPrice": 200,
-      "id": 1
+      "ProductName": "zqefqzfqrgsgs",
+      "ProductDescription": "grsthgrthrhrhsfghsghr",
+      "ProductPrice": 75475,
+      "id": 7
+    },
+    {
+      "ProductName": "thgtyj,fghnbs",
+      "ProductDescription": "grsthgrthrhrhsfghsghr",
+      "ProductPrice": 0,
+      "id": 8
+    },
+    {
+      "ProductName": "qsdfgdfsqgdfs",
+      "ProductDescription": "fgsdfgsdfgdsfgsdg",
+      "ProductPrice": 500000,
+      "id": 10
+    },
+    {
+      "ProductName": "qdsfsfsdqfq",
+      "ProductDescription": "fqzerthtyjryukdhjfyukuil;hgjgh",
+      "ProductPrice": 0,
+      "id": 11
+    },
+    {
+      "ProductName": "bfghjfhdrthtrj",
+      "ProductDescription": "jyuijktyukykyfuktyuktyuk",
+      "ProductPrice": 100000,
+      "id": 12
     }
   ]
 }

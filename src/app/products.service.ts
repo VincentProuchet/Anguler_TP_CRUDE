@@ -1,7 +1,7 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import Product from './model/product';
 
 @Injectable({
@@ -15,16 +15,17 @@ export class ProductsService {
    *
    * @param ProductName
    * @param ProductDescription
-   * @param ProductPrice
+   * @param ProductPrice un prix, notez que le controle d'intégrité est fait par le service
+   *                     et non en amont.ça c'est pour éviter de les chercher partout
    */
-  addProduct(ProductName: string, ProductDescription: string, ProductPrice: number) {
+  addProduct(ProductName: string, ProductDescription: string, ProductPrice: string): Subscription {
     const thatProduct = {
       ProductName: ProductName,
       ProductDescription: ProductDescription,
-      ProductPrice: ProductPrice
+      ProductPrice: parseFloat(ProductPrice) || 0
     };
     console.log(thatProduct);
-    this.http.post(`${this.uri}`, thatProduct).subscribe(res => console.log("Done"));
+    return this.http.post(`${this.uri}`, thatProduct).subscribe(res => console.log("Done"));
 
   }
   /**
@@ -44,14 +45,26 @@ export class ProductsService {
   getProduct(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.uri}/${id}`);
   }
-
+  /**
+   * Met à jour le produit
+   * par sa valeurs d'identifiant
+   * @param productName
+   * @param productDescription
+   * @param productPrice
+   * @param id
+   * @returns
+   */
   updateProduct(productName: string, productDescription: string, productPrice: string, id: string) {
     const product = {
       id: parseInt(id),
       ProductName: productName,
       ProductDescription: productDescription,
-      ProductPrice: parseFloat(productPrice)
+      ProductPrice: parseFloat(productPrice) || 0
     };
     return this.http.put<Product>(`${this.uri}/${id}`, product);
+  }
+
+  deleteProduct(id: number): Observable<Product> {
+    return this.http.delete<Product>(`${this.uri}/${id}`)
   }
 }

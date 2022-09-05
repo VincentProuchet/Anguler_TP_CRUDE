@@ -9,7 +9,11 @@ import { ProductsService } from '../products.service';
 })
 export class ProductAddComponent implements OnInit {
   angForm !: FormGroup;
-
+  /**
+   *
+   * @param formBd injection du formBuilder
+   * @param srvProducts Injection du ProductService
+   */
   constructor(private formBd: FormBuilder, private srvProducts: ProductsService) { this.createForm(); }
   ngOnInit(): void { }
   createForm() {
@@ -21,8 +25,19 @@ export class ProductAddComponent implements OnInit {
         ProductPrice: ['', Validators.required]
       });
   }
+  /**
+   * Demande au services d'ajouter un produit dans la base de données
+   * @param ProductName
+   * @param ProductDescription
+   * @param ProductPrice
+   */
   addProduct(ProductName: string, ProductDescription: string, ProductPrice: string) {
-    this.srvProducts.addProduct(ProductName, ProductDescription, parseFloat(ProductPrice));
+    this.srvProducts.addProduct(ProductName, ProductDescription, ProductPrice);
+    // et on remet les valeur des champs à 0 en cas de réussite
+    // un subscribe aurait été plus sympa
+    this.angForm.reset();
+
+
   }
 
 }
