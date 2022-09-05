@@ -6,7 +6,7 @@ import { ProductEditComponent } from "./product-edit/product-edit.component";
 
 const routes: Routes = [
   {
-    path: 'pruduct/create',
+    path: 'product/create',
     component: ProductAddComponent
   },
   {
@@ -14,7 +14,7 @@ const routes: Routes = [
     component: ProductEditComponent
   },
   {
-    path: 'pruducts',
+    path: 'products',
     component: ProductGetComponent
   }
 
