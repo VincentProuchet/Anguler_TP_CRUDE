@@ -12,11 +12,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { ProductAddComponent } from './product-add/product-add.component';
 import { ProductGetComponent } from './product-get/product-get.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
+import { ProductsService } from './products.service';
 @NgModule({
-  providers: [{
-    provide: LOADING_BAR_CONFIG,
-    useValue: { latencyTreshold: 0 }
-  }
+  providers: [
+    ProductsService,
+    {
+      provide: LOADING_BAR_CONFIG,
+      useValue: { latencyTreshold: 0 }
+    }
+
   ],
   declarations: [
     AppComponent,
